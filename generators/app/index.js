@@ -2,6 +2,7 @@
 var yeoman = require('yeoman-generator');
 var chalk = require('chalk');
 var yosay = require('yosay');
+var mkdirp = require('mkdirp');
 
 module.exports = yeoman.Base.extend({
   prompting: function () {
@@ -30,8 +31,8 @@ module.exports = yeoman.Base.extend({
   },
 
   makeDirs: function () {
-    this.mkdir('dist');
-    this.mkdir('src/js/components');
+    mkdirp('dist');
+    mkdirp('src/js/components');
   },
 
   writing: function () {
@@ -52,7 +53,7 @@ module.exports = yeoman.Base.extend({
       this.destinationPath('gulpfile.js')
     ),
     this.fs.copy(
-      this.templatePath('.gitignore'),
+      this.templatePath('npmignore'),
       this.destinationPath('.gitignore')
     ),
     this.fs.copy(

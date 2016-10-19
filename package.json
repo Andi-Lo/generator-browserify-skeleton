@@ -1,8 +1,8 @@
 {
   "name": "generator-browserify-skeleton",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "A minimal generator with livereload and browserify for writing javascript in node style whitout any bloat",
-  "homepage": "",
+  "homepage": "https://github.com/Andi-Lo/generator-browserify-skeleton",
   "author": {
     "name": "Andreas Lorer",
     "email": "contact@andreaslorer.de",
@@ -21,8 +21,9 @@
     "yeoman-generator"
   ],
   "dependencies": {
-    "yeoman-generator": "^0.23.0",
     "chalk": "^1.0.0",
+    "mkdirp": "^0.5.1",
+    "yeoman-generator": "^0.23.0",
     "yosay": "^1.0.0"
   },
   "devDependencies": {
