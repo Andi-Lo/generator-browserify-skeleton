@@ -1,6 +1,6 @@
 {
   "name": "generator-browserify-skeleton",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "A minimal generator with livereload and browserify for writing javascript in node style whitout any bloat",
   "homepage": "https://github.com/Andi-Lo/generator-browserify-skeleton",
   "author": {

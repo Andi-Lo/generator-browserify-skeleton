@@ -15,6 +15,12 @@ var $ = require('gulp-load-plugins')({
     }
 );
 
+function swallowError (error) {
+  // If you want details of the error in the console
+  console.log(error.toString())
+  this.emit('end')
+}
+
 gulp.task('html', function () {
   gulp.src('./src/*.html')
     .pipe($.connect.reload());
@@ -23,6 +29,7 @@ gulp.task('html', function () {
 gulp.task('build', function() {
   return $.browserify('./src/js/app.js')
     .bundle()
+    .on('error', swallowError)
     .pipe($.source('bundle.js'))
     .pipe($.buffer())
     .pipe($.sourcemaps.init({loadMaps: true})) // loads map from browserify file
