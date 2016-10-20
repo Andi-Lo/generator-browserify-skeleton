@@ -7,7 +7,6 @@ var $ = require('gulp-load-plugins')({
     pattern: '*',
     rename: {
         'run-sequence': 'runSequence',
-        'browserSync': 'browser-sync',
         'browserify': 'browserify',
         'vinyl-buffer': 'buffer',
         'babelify': 'babelify',
@@ -15,6 +14,11 @@ var $ = require('gulp-load-plugins')({
       }
     }
 );
+
+gulp.task('html', function () {
+  gulp.src('./src/*.html')
+    .pipe($.connect.reload());
+});
 
 gulp.task('build', function() {
   return $.browserify('./src/js/app.js')
@@ -39,9 +43,7 @@ gulp.task('build-dev', function() {
 gulp.task('watch', function() {
   gulp.start('build');
   gulp.watch('./src/js/**/*.js', ['build']);
-  gulp.watch([
-    'src/*.html'
-  ]).on('change', $.browserSync.reload);
+  gulp.watch('./src/*.html', ['html']);
 });
 
 gulp.task('serve', function(event) {
