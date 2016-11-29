@@ -1,5 +1,5 @@
 # generator-browserify-skeleton [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Dependency Status][daviddm-image]][daviddm-url]
-> A minimal generator with livereload and browserify for writing javascript in node style whitout any bloat
+> A minimal generator with livereload, browserify for node style javascript (ES 2017) whitout any bloat
 
 ## Installation
 

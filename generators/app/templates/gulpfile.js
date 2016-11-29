@@ -6,7 +6,6 @@ var gulp = require('gulp');
 var $ = require('gulp-load-plugins')({
     pattern: '*',
     rename: {
-        'run-sequence': 'runSequence',
         'browserify': 'browserify',
         'vinyl-buffer': 'buffer',
         'babelify': 'babelify',
@@ -16,7 +15,6 @@ var $ = require('gulp-load-plugins')({
 );
 
 function swallowError (error) {
-  // If you want details of the error in the console
   console.log(error.toString())
   this.emit('end')
 }
@@ -26,8 +24,16 @@ gulp.task('html', function () {
     .pipe($.connect.reload());
 });
 
+gulp.task('lint', function() {
+  return gulp.src(['./src/js/**/*.js', '!./src/js/!bundle.js', '!./src/js/!bundle.js.map'])
+    .pipe($.eslint({}))
+    .pipe($.eslint.format())
+    .pipe($.eslint.failAfterError());
+});
+
 gulp.task('build', function() {
-  return $.browserify('./src/js/app.js')
+  return $.browserify('./src/js/app.js')<% if (useEcmascript) { %>
+    .transform("babelify") <% } %>
     .bundle()
     .on('error', swallowError)
     .pipe($.source('bundle.js'))
@@ -39,7 +45,8 @@ gulp.task('build', function() {
 });
 
 gulp.task('build-dev', function() {
-  return $.browserify('./src/js/app.js')
+  return $.browserify('./src/js/app.js')<% if (useEcmascript) { %>
+    .transform("babelify") <% } %>
     .bundle()
     .pipe($.source('bundle.min.js'))
     .pipe($.buffer())
@@ -49,7 +56,7 @@ gulp.task('build-dev', function() {
 
 gulp.task('watch', function() {
   gulp.start('build');
-  gulp.watch('./src/js/**/*.js', ['build']);
+  gulp.watch(['./src/js/**/*.js', '!./src/js/bundle.js'], ['build']);
   gulp.watch('./src/*.html', ['html']);
 });
 

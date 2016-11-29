@@ -18,6 +18,7 @@ describe('generator-browserify-skeleton:app', function () {
     assert.file([
       'README.md',
       'package.json',
+      '.eslintrc',
       'gulpfile.js',
       '.gitignore',
       'src/index.html',
