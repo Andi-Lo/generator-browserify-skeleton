@@ -75,7 +75,7 @@ module.exports = yeoman.Base.extend({
       this.templatePath('gulpfile.js'),
       this.destinationPath('gulpfile.js'),
       {
-        useEcmascript: this.useEcmascript
+        useEcmascript: this.useEcmascript,
         useEslint: this.useEslint
       }
     ),
