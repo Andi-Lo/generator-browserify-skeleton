@@ -68,7 +68,8 @@ module.exports = yeoman.Base.extend({
       {
         autor: this.autor,
         projectName: this.projectName,
-        useEcmascript: this.useEcmascript
+        useEcmascript: this.useEcmascript,
+        useEslint: this.useEslint
       }
     ),
     this.fs.copyTpl(
